@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+.Pending {
+  color: orange;
+}
+
+.Completed {
+  color: green;
+}
+
+.Lapsed {
+  color: red;
+}
+
+.Cancelled {
+  color: rgb(83, 81, 81);
+}
+
+.mat-form-field {
+  display: block;
+}
+
+tr.mat-header-row {
+  background-color: #80808075;
+}
+
+th{
+  color: black;
+}
+
+.tab-content-area {
+  padding: 26px 15px 15px;
+}

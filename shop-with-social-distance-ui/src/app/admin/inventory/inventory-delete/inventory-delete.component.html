@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Delete Inventory</h2>
+<mat-dialog-content class="mat-typography">
+  <p>Are you sure to delete this record?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button class="btn-danger" [disabled]="isClicked" mat-dialog-close>Cancel</button>
+  <button mat-flat-button class="btn-success" [disabled]="isClicked" (click)="deleteCustomer(data.id)">Proceed</button>
+</mat-dialog-actions>

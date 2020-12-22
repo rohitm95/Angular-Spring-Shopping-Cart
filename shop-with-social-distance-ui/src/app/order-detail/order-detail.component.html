@@ -1,0 +1,117 @@
+<h2 mat-dialog-title class="mat-h3">Order Details</h2>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-md-6">Order #{{data.order_no}} details</div>
+    <div class="col-md-6">
+      <h5>Status:<span class="{{data.status}}"> {{data.order_status}}</span></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Delivery Date: {{data.delivery_date}}</h5>
+        </div>
+        <div class="col-md-6">
+          <h5>Time Slot:{{data.time_slot}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="text-align: right;">
+      <p>Amount Payable</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Customer Name: {{data.customer_name | titlecase}}</h5>
+        </div>
+        <div class="col-md-6">
+          <h5>Contact: +91-{{data.customer.mobileNumber}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="text-align: right;">
+      <b>
+        <h1>{{data.amountPayable | currency:'INR'}}</h1>
+      </b>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Aggregator: Raju Kumar</h5>
+    </div>
+    <div class="col-md-3">
+      <h5>Contact: 9822345671</h5>
+    </div>
+  </div>
+
+  <div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="sr_no">
+        <th mat-header-cell *matHeaderCellDef>SR. NO</th>
+        <td mat-cell *matCellDef="let i = index">{{i+1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="item">
+        <th mat-header-cell *matHeaderCellDef class="itemname">ITEM NAME</th>
+        <td mat-cell *matCellDef="let element" class="itemname"> {{element.itemName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef class="quantity">QUANTITY </th>
+        <ng-container *ngIf="data.status === 'INITIATED'">
+          <td mat-cell *matCellDef="let element; let index = index">
+            <button [disabled]="element.noOfItemsOrderded==1" mat-mini-fab type="button"
+              (click)="quantityDecrement(element, index)">
+              <i class="fa fa-minus"></i>
+            </button>
+
+            <input [value]="element.noOfItemsOrderded" class='input-type m-1' type="text" name="Quantity" />
+
+            <button [disabled]="(element.toBeSoldOneItemPerOrder) || (element.noOfItemsOrderded>=5)" mat-mini-fab
+              type="button" (click)="quantityIncrement(element, index)">
+              <i class="fa fa-plus"></i>
+            </button>
+          </td>
+        </ng-container>
+        <td mat-cell *matCellDef="let element; let index = index">{{element.noOfItemsOrderded}}</td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef class="quantity">QUANTITY</th>
+        <td mat-cell *matCellDef="let element; let index = index">{{element.quantity}}</td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef class="price">PRICE</th>
+        <td mat-cell *matCellDef="let element" class="price"> {{element.price | currency: 'INR'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef class="amount">AMOUNT</th>
+        <td mat-cell *matCellDef="let element" class="amounttd">
+          {{element.noOfItemsOrderded * element.price | currency: 'INR'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button *ngIf="role === 'Admin' && data.status === 'INITIATED'" color="primary"
+    [disabled]="isClicked" (click)="markAsDelivered()">Ready for Delivery</button>
+  <button mat-raised-button *ngIf="role === 'Aggregator' && data.status === 'INITIATED'" color="primary"
+    [disabled]="isClicked" (click)="markAsDelivered()">Ready for Delivery</button>
+  <button mat-raised-button *ngIf="role === 'Admin' && data.status === 'READY_TO_DELIVER'" color="primary"
+    [disabled]="isClicked" (click)="markAsDelivered()">Mark as Delivered</button>
+  <!-- <button mat-raised-button *ngIf="role === 'Admin'" color="accent">Edit Order</button> -->
+  <!-- <button mat-raised-button *ngIf="role === 'Aggregator'" color="primary">Send Bill</button> -->
+  <button mat-raised-button mat-dialog-close class="btn-danger" [disabled]="isClicked">Close</button>
+</mat-dialog-actions>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

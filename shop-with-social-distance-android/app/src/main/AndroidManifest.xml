@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.persistent.covidinventory">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".aggregator.GoldenKatarApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".aggregator.activities.NewPendingOrderDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".aggregator.activities.NewDashboardActivity" />
+        <activity
+            android:name=".customer.activities.CustomerOrderDisplayActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".customer.activities.MyOrdersActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".customer.activities.CategoryFilterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".customer.activities.TimeslotActivity"
+            android:label="@string/title_activity_timeslot"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".customer.activities.CartDisplayActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".customer.activities.LandingPageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".aggregator.SearchOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".common.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".common.LoginActivity"
+            android:label="@string/login"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".common.UpdatePassword"
+            android:label="@string/update_password"
+            android:theme="@style/AppTheme" />
+    </application>
+
+</manifest>

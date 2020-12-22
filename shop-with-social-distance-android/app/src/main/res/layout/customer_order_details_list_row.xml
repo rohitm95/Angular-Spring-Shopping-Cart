@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal"
+    android:paddingLeft="0dp"
+    android:paddingStart="0dp"
+    android:paddingRight="6dp"
+    android:paddingEnd="6dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoput_details_card"
+        android:layout_below="@+id/order_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FAF9F9"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+            <LinearLayout
+                android:id="@+id/product_detail_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Product Name:"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/customer_order_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:textColor="@color/black"
+                    android:text="itemname"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/quantity_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Quantity ordered:"
+                    android:layout_marginTop="20dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/customer_order_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="0"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Price:"
+                    android:layout_marginTop="20dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/customer_order_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="0"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

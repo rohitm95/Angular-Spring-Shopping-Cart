@@ -1,0 +1,45 @@
+<div class="tab-content-area">
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource" matSort class="table-striped mt-2">
+      <ng-container matColumnDef="store_id">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Store Id </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.id}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="store_name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Store Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.storeName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="slotDuration">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Timeslot Duration</th>
+        <td mat-cell *matCellDef="let element"> {{element.slotDuration}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryInSlot">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Delivery Per Hour </th>
+        <td mat-cell *matCellDef="let element"> {{element.deliveryInSlot}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="openDialog(element)" #tooltip="matTooltip" matTooltip="View/Edit Store Details">
+            <i class="fa fa-eye"></i>
+          </button>
+          <button mat-button #tooltip="matTooltip" matTooltip="Mark Inactive" [disabled]="!element.active"
+            (click)="askForConfirmation(element)">
+            <i class="fa fa-times"></i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;let element"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

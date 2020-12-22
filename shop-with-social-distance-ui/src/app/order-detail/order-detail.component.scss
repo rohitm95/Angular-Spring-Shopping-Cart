@@ -1,0 +1,70 @@
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+div > h5 {
+  text-align: right;
+}
+
+.Pending {
+  color: orange;
+}
+
+.Completed {
+  color: green;
+}
+
+.Lapsed {
+  color: red;
+}
+
+.Cancelled {
+  color: rgb(83, 81, 81);
+}
+
+.background-color-black {
+  background-color: black;
+  color: white;
+}
+
+tr.mat-header-row {
+  background-color: #80808075;
+}
+
+th{
+  color: black;
+}
+
+@media only screen and (max-width: 768px) {
+
+.itemname{
+  padding-left: 10px;
+}
+
+.quantity{
+  padding-left: 10px;
+}
+
+.quantitytd{
+  padding-left:27px;
+}
+
+.price{
+  padding-left: 10px;
+}
+
+.amount{
+  padding-left:10px;
+}
+
+.amounttd{
+  padding-left: 15px;
+}
+
+}
+
+.input-type{
+  border:1px solid black;
+  width: 15%;
+}

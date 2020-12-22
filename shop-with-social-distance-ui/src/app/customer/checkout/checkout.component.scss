@@ -1,0 +1,53 @@
+.ScrollStyle
+{
+    max-height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right:3%;
+    margin-top:1%;
+}
+
+.ScrollStyle::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.ScrollStyle::-webkit-scrollbar-track {
+  background: #eee;
+
+}
+
+/* scrollbar handle */
+.ScrollStyle::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color:rgb(105, 98, 98);
+  background-image: rgb(105, 98, 98);
+}
+
+.btntime{
+    border: 1px solid #4915bf;
+    color:#4915bf;
+    padding: 0 2px 0 2px;
+}
+
+.btntime:hover {
+    background-color: #ff8400;
+    color: white;
+  }
+  .btntime:focus {
+    background-color: #ff8400;
+    color: white;
+  }
+
+  .cardcheck{
+    background-color: #f7f7f7;
+  }
+
+  .textHeader{
+  background-color: #313131;
+  }
+
+  .btnGroup{
+    padding-left: 8px;
+  }
+

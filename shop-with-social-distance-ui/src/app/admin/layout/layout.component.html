@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="body-container">
+  <div class="card">
+    <mat-tab-group mat-align-tabs="start" dynamicHeight animationDuration="0ms" #selectedDashBoardTabIndex>
+      <mat-tab label="DASHBOARD" id="dashboard-tab">
+        <ng-template matTabContent>
+          <app-dashboard
+            [selectedDashBoardTabIndex]="selectedDashBoardTabIndex"
+            (orderStatusFromDashBoard) = "onOrderStatusFromDashBoard($event)"
+            ></app-dashboard>
+        </ng-template>
+      </mat-tab>
+      <!-- Customer changes start -->
+      <mat-tab label="CUSTOMERS" id="customers-tab">
+        <ng-template matTabContent>
+          <app-customer></app-customer>
+        </ng-template>
+      </mat-tab>
+      <!-- Customer changes end -->
+      <mat-tab label="INVENTORY" id="inventory-tab">
+        <ng-template matTabContent>
+          <app-inventory></app-inventory>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="STORE" id="store-tab">
+        <ng-template matTabContent>
+          <app-store></app-store>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="ORDERS" id="orders-tab">
+        <ng-template matTabContent>
+          <app-orders [orderStatus]="orderStatusFromDashBoard">
+          </app-orders>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait...</p>
+</ngx-spinner>

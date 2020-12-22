@@ -1,0 +1,203 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space" fxLayoutAlign="center center">{{ action }} Inventory</span>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <div class="container fluid updateinventory">
+        <form [formGroup]="frmInventory" autocomplete="off" fxLayoutAlign="center center" novalidate
+            (ngSubmit)="addUpdateInventory(frmInventory.value)" class="form">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element hidden">
+                        <input matInput placeholder="Id" formControlName="id" value="inventory.id">
+                    </mat-form-field>
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Item Number" formControlName="itemNumber"
+                            value="inventory.itemNumber">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['itemNumber'].valid && frmInventory.controls['itemNumber'].touched" >
+                            {{ getErrorMessage('itemNumber') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Group</mat-label>
+                        <mat-select formControlName="group" [(value)]="inventory.group">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let g of groups" [value]="g">
+                                {{g}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmInventory.controls['group'].valid && frmInventory.controls['group'].touched">
+                            {{ getErrorMessage('group') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Item Name" formControlName="itemName" value="inventory.itemName">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['itemName'].valid && frmInventory.controls['itemName'].touched">
+                            {{ getErrorMessage('itemName') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Price" formControlName="price" value="inventory.price">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['price'].valid && frmInventory.controls['price'].touched">
+                            {{ getErrorMessage('price') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Stock" formControlName="stock" value="inventory.stock">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['stock'].valid && frmInventory.controls['stock'].touched">
+                            {{ getErrorMessage('stock') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category" [(value)]="inventory.category">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let category of categories" [value]="category">
+                                {{category}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmInventory.controls['category'].valid && frmInventory.controls['category'].touched">
+                            {{ getErrorMessage('category') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Low Stock Indicator</mat-label>
+                        <mat-select formControlName="lowStockIndicator" [(value)]="inventory.lowStockIndicator">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let tf of true_false" [value]="tf">
+                                {{tf}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmInventory.controls['lowStockIndicator'].valid && frmInventory.controls['lowStockIndicator'].touched">
+                            {{ getErrorMessage('lowStockIndicator') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>To be Sold one item per order</mat-label>
+                        <mat-select formControlName="toBeSoldOneItemPerOrder"
+                            [(value)]="inventory.toBeSoldOneItemPerOrder">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let tf of true_false" [value]="tf">
+                                {{tf}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmInventory.controls['toBeSoldOneItemPerOrder'].valid && frmInventory.controls['toBeSoldOneItemPerOrder'].touched">
+                            {{ getErrorMessage('toBeSoldOneItemPerOrder') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Volume Per Item" formControlName="volumePerItem"
+                            value="inventory.volumePerItem">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['volumePerItem'].valid && frmInventory.controls['volumePerItem'].touched">
+                            {{ getErrorMessage('volumePerItem') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Monthly Quota Per User" formControlName="monthlyQuotaPerUser"
+                            value="inventory.monthlyQuotaPerUser">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['monthlyQuotaPerUser'].valid && frmInventory.controls['monthlyQuotaPerUser'].touched">
+                            {{ getErrorMessage('monthlyQuotaPerUser') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Item Type</mat-label>
+                        <mat-select formControlName="itemType" [(value)]="inventory.itemType">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let itemType of itemTypes" [value]="itemType">
+                                {{itemType}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmInventory.controls['itemType'].valid && frmInventory.controls['itemType'].touched">
+                            {{ getErrorMessage('itemType') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Yearly Quota Per User" 
+                        formControlName="yearlyQuotaPerUser" value="inventory.yearlyQuotaPerUser">
+                        <mat-error
+                            *ngIf="!frmInventory.controls['yearlyQuotaPerUser'].valid && frmInventory.controls['yearlyQuotaPerUser'].touched">
+                            {{ getErrorMessage('yearlyQuotaPerUser') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label  for="file-upload"  >
+                    <i class="fa fa-cloud-upload"></i> Upload Item Image
+                </label>
+                <div  class="custom-file-upload">
+                    <img class="image" [src]="imageSrc"  *ngIf="imageSrc && frmInventory.controls['image'].valid">
+                    
+                   
+                    <input  class="file-upload" id="file-upload" formControlName="image" type="file"  accept='image/*'
+                        (change)="onImageChange($event)"/>
+                        <mat-error *ngIf="!frmInventory.controls['image'].valid && frmInventory.controls['image'].touched">
+                            {{ getErrorMessage('image') }}
+                        </mat-error>
+                </div>
+            </div>
+
+            <div class="form-element setCenter">
+                <button color="primary" mat-raised-button type="submit" [disabled]="!frmInventory.valid">
+                    <i class="fa fa-pencil" *ngIf="action=='Update'" aria-hidden="true"></i>
+                    <i class="fa fa-plus" *ngIf="action=='Add'" aria-hidden="true"></i>
+                    {{action}} Inventory
+                </button>
+                &nbsp;&nbsp;
+                <button class="btn btn-secondary" type="button" mat-raised-button color="warn" mat-dialog-close>
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                    Cancel</button>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>

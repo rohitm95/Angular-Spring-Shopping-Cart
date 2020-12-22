@@ -1,0 +1,180 @@
+<div class="tab-content-area">
+  <h3>Store Information</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="col-md-12" style="padding: 0;">
+        <input matInput placeholder="Store Name" color="primary" #storename [(ngModel)]="store.storeName" disabled />
+      </mat-form-field>
+      <mat-form-field class="col-md-6" style="padding: 0;">
+        <mat-select [(ngModel)]="store.slotDuration" placeholder="Duration of time slot in Mins">
+          <mat-option value="30" selected>30</mat-option>
+          <mat-option value="45">45</mat-option>
+          <mat-option value="60">60</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="col-md-6" style="padding: 0;">
+        <input matInput placeholder="Number of Deliveries in slot" #noDelivery name="noDelivery" id="noDelivery"
+          [(ngModel)]="store.deliveryInSlot" type="number" required />
+          <mat-error *ngIf="!noDelivery.valid">
+            Number Of Deliveries In Slot Is Required
+          </mat-error>          
+      </mat-form-field>
+      <br>
+      <h3>Store Timings</h3>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">DAY</th>
+            <th scope="col">DELIVERY STARTS AT</th>
+            <th scope="col">DELIVERY CLOSES AT</th>
+            <th scope="col">WEEKLY OFF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of store.storeTimings">
+            <th scope="row">{{d.day}}</th>
+            <td>
+              <mat-form-field style="padding: 0;">
+                <mat-select [(ngModel)]="d.deliveryStartAt" [(disabled)]="d.weaklyOff">
+                  <mat-option *ngFor="let t of timings" value="{{t}}">
+                    {{t}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field style="padding: 0;">
+                <mat-select [(ngModel)]="d.deliveryEndAt" [(disabled)]="d.weaklyOff">
+                  <mat-option *ngFor="let t of timings" value="{{t}}">
+                    {{t}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-checkbox [(checked)]="d.weaklyOff" color="primary" (change)="d.weaklyOff=!d.weaklyOff; setSubmitButtonDisableStatus(undefined,'')">
+              </mat-checkbox>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Daily Breaks</h3>
+      <div class="row" style="align-items: flex-end;">
+        <div class="col-md-12" *ngFor="let break of store.breakTimings; let i = index;">
+          <div class="row">
+            <div class="col-md-2">
+              Break {{i + 1}}
+            </div>
+            <div class="col-md-3">
+              Break From
+              <br>
+              <mat-form-field class="col-md-12" style="padding: 0;">
+                <mat-select [(ngModel)]="break.breakFrom" name="breakFrom" #breakFrom="ngModel" (selectionChange)="setSubmitButtonDisableStatus(breakFrom.value,'breakFrom')">
+                  <mat-option *ngFor="let t of timings" value="{{t}}">
+                    {{t}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              Break To
+              <br>
+              <mat-form-field class="col-md-12" style="padding: 0;">
+                <mat-select [(ngModel)]="break.breakTo" name="breakTo" #breakTo="ngModel" (selectionChange)="setSubmitButtonDisableStatus(breakTo.value,'breakTo')">
+                  <mat-option *ngFor="let t of timings" value="{{t}}">
+                    {{t}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              Break Name
+              <br>
+              <mat-form-field style="padding: 0;">
+                <input matInput type="text" name="breakName" #breakName="ngModel" [(ngModel)]="break.breakType"
+                  placeholder="Break Name" required (change)="setSubmitButtonDisableStatus(breakName.value,'breakType')" />
+                <mat-error *ngIf="breakName.invalid && breakName.touched">
+                  Break Name Is Required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-1">
+              <br>
+              <button mat-button color="primary" *ngIf="i>0" (click)="removeBreak(i)" style="height: 40px;"
+                matTooltip="Remove Break">
+                <i class="fa fa-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button mat-button color="primary" (click)="addBreak()" style="height: 40px;" matTooltip="Add Break">
+          <i class="fa fa-plus-circle"></i> Add Break
+        </button>
+      </div>
+
+      <br>
+      <h3>Store Holidays</h3>
+      <div>
+        <div class="row" *ngFor="let hol of store.storeHolidays; let i = index;">
+          <div class="col-md-2">
+            <br>
+            Holiday
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="col-md-12">
+              <input matInput [value]="hol.date" [(ngModel)]="hol.date" [matDatepicker]="picker"
+                placeholder="Choose a date" (dateChange)="setSubmitButtonDisableStatus(hol.date,'date')" 
+                name="holidayDate" #holidayDate="ngModel" required />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="holidayDate.invalid && holidayDate.touched">
+                Holiday Date Is Required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-5">
+            <mat-form-field class="col-md-12" style="padding: 0;">
+              <input matInput type="text" name="holiday" #holiday="ngModel" [(ngModel)]="hol.holiday"
+                placeholder="Holiday Name" required (change)="setSubmitButtonDisableStatus(holiday.value,'holiday')" />
+              <mat-error *ngIf="holiday.invalid && holiday.touched">
+                Holiday Is Required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-1">
+            <button mat-button color="primary" *ngIf="i>0" (click)="removeHoliday(i)" style="height: 40px;"
+              matTooltip="Remove Holiday">
+              <i class="fa fa-remove"></i>
+            </button>
+          </div>
+        </div>
+        <div>
+          <button mat-button (click)="addHoliday()" color="primary" style="height: 40px;" matTooltip="Add Holiday">
+            <i class="fa fa-plus-circle"></i> Add Holiday
+          </button>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="row" style="margin-top: 5px;">
+        <div class="col-md-12">
+          <button mat-flat-button (click)="saveStore()"
+            [disabled]="storename.value == '' ||  noDelivery.value == '' || isValid" color="primary"
+            style="height: 40px;" matTooltip="Update Store Details">
+            Update
+          </button>
+          &nbsp;
+          <button mat-flat-button color="warn" (click)="cancel()" style="height: 40px;" matTooltip="Cancel">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myCart"
+        android:title="My Cart"
+        />
+<!--    <item-->
+<!--        android:id="@+id/settings"-->
+<!--        android:title="Settings"-->
+
+<!--        />-->
+<!--    <item-->
+<!--        android:id="@+id/Help"-->
+<!--        android:title="Help"-->
+<!--        />-->
+
+    <item
+        android:id="@+id/myOrders"
+        android:title="My Orders"
+        />
+    <item
+        android:id="@+id/logout"
+        android:title="Log out"
+        />
+    <item
+        android:id="@+id/update_password"
+        android:title="Update Password"
+        />
+
+    <item
+        android:id="@+id/footer_spacer_1"
+        android:checkable="false"
+        android:enabled="false"
+        android:orderInCategory="200"
+        android:title="" />
+    <item
+        android:id="@+id/footer_spacer_2"
+        android:checkable="false"
+        android:enabled="false"
+        android:orderInCategory="200"
+        android:title="" />
+
+</menu>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    tools:context=".aggregator.ui.NewPendingOrdersFragment">
+
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <RelativeLayout
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/round_rect_bg"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:layout_below="@id/section_label">
+
+        <EditText
+            android:id="@+id/search_order_no"
+            android:layout_width="match_parent"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/advance_search_button"
+            android:layout_toLeftOf="@id/advance_search_button"
+            android:inputType="numberDecimal"
+            android:hint="@string/search"
+            android:textSize="14sp"
+            android:background="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            tools:ignore="RtlSymmetry"
+            android:importantForAutofill="no" />
+
+        <ImageView
+            android:id="@+id/advance_search_button"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/search_image"
+            android:scaleType="center"
+            android:background="@android:color/holo_blue_dark" />
+
+        <ImageView
+            android:id="@+id/search_view_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/advance_search_button"
+            android:layout_toLeftOf="@id/advance_search_button"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:contentDescription="@string/search_image"
+            android:scaleType="center"
+            android:src="@android:drawable/ic_menu_search" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/list_header_view"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/black"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="3"
+        android:layout_below="@+id/search_view"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingLeft="4dp"
+            android:textStyle="bold"
+            android:text="@string/tab_order_no"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/delivery_date"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/time_slot"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pending_orders_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_below="@+id/list_header_view"
+        />
+
+</RelativeLayout>

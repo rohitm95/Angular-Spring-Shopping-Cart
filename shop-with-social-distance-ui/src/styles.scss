@@ -1,0 +1,153 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./scss/variables";
+
+html, body { height: 100%; }
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*reset css section*/
+body, html {
+	margin: 0;
+	padding: 0;
+}
+body{
+	line-height: 1;
+	background-color: #f7f6f6;
+}
+body, html, div, blockquote, img, label, p, h1, h2, h3, h4, h5, h6, pre, ul,
+ol, li, dl, dt, dd, form, a, fieldset, input, th, td{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+h1, h2, h3, h4, h5, h6{
+	font-size: 100%;
+}
+ul, ol{
+	list-style: none;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+.clearfix{
+	clear: both;
+	overflow: hidden;
+	display: block;
+}
+.clearfix:after, .clearfix:before{
+	content: '';
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+
+
+
+.font-sm {
+  font-size: 13px;
+}
+
+.font-xs {
+  font-size: 11px;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%); /* IE 9 */
+  -webkit-transform: translate(-50%,-50%); /* Safari */
+  transform: translate(-50%,-50%); /* Standard syntax */
+  width: 70px;
+  height: 70px;
+  > div {
+      width: 18px;
+      height: 18px;
+      background-color: #333;
+
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+  .bounce1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+  }
+
+  .bounce2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+  }
+
+  .bounce3 {
+    -webkit-animation-delay: -0.08s;
+      animation-delay: -0.08s;
+  }
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+  } 40% {
+      -webkit-transform: scale(1.0);
+      transform: scale(1.0);
+  }
+}
+
+.tab-content-area {	
+  padding: 26px 15px 15px;	
+}	
+.mat-tab-label-container {	
+  background: #3a3a3a;	
+  .mat-tab-label-active {	
+    background: white;	
+    opacity: unset;	
+    .mat-tab-label-content {	
+      color: $default-text;	
+    }	
+  }	
+  .mat-tab-label {	
+    color: $sd-primary;	
+    opacity: unset;	
+    border-right: 1px solid #676767;	
+  }	
+}	
+.mat-tab-group {	
+  &.mat-primary {	
+    .mat-ink-bar {	
+      background-color: $sd-primary;	
+      top: 0;	
+    }	
+  }	
+  .mat-tab-header {	
+    border: 0;	
+  }	
+}

@@ -1,0 +1,99 @@
+<h2 mat-dialog-title class="mat-h3">Order Details</h2>
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-md-6">Order #<b>{{data.orderNo}}</b> details</div>
+        <div class="col-md-6">
+            <h5><b>Status:</b><span class="{{data.status}}"> {{data.status}}</span></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><b>Delivery Date:</b> {{ data.delivery_date }}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5><b>Time Slot:</b> {{data.time_slot}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+            <p><b>Amount Payable</b></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><b>Customer Name:</b> {{data.customer_name | titlecase }}</h5>
+                </div>
+                <div class="col-md-6">
+                    <h5><b>Contact:</b> +91-{{data.customer.mobileNumber}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+            <b>
+                <h1>{{data.amount | currency: 'INR' }}</h1>
+            </b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h5><b>Aggregator:</b> Raju Kumar</h5>
+        </div>
+        <div class="col-md-3">
+            <h5><b>Contact:</b> +91-9822345671</h5>
+        </div>
+    </div>
+
+    <div>
+        <table mat-table [dataSource]="dataSourceItems">
+            <ng-container matColumnDef="sr_no">
+                <th mat-header-cell *matHeaderCellDef>SR. NO </th>
+                <td mat-cell *matCellDef="let i = index">{{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="item">
+                <th mat-header-cell *matHeaderCellDef class="itemname">ITEM NAME </th>
+                <td mat-cell *matCellDef="let element" class="itemname"> {{element.itemName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef class="itemname">QUANTITY </th>
+                <td mat-cell *matCellDef="let element" class="itemname"> {{element.noOfItemsOrderded}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef class="price">PRICE </th>
+                <td mat-cell *matCellDef="let element" class="price"> {{element.price | currency: 'INR' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef class="amount">AMOUNT </th>
+                <td mat-cell *matCellDef="let element" class="amounttd">
+                    {{element.noOfItemsOrderded * element.price | currency: 'INR' }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <!-- <button mat-raised-button color="primary" *ngIf="role === 'Customer' && data.status === 'PENDING'"
+        (click)="updateOrderStatus('cancel')">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        Cancel Order
+    </button> -->
+    <button mat-raised-button color="primary" class="hidden"
+        (click)="updateOrderStatus('cancel')">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        Cancel Order
+    </button>
+    <button mat-raised-button mat-dialog-close class="btn-danger">
+        <i class="fa fa-close" aria-hidden="true"></i>
+        Close
+    </button>
+</mat-dialog-actions>

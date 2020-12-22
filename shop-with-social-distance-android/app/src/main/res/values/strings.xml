@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">CovidInventory</string>
+    <string name="tab_text_1">Pebding</string>
+    <string name="tab_text_2">Lapsed</string>
+    <string name="tab_text_3">Completed</string>
+
+    <string name="login">Login</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="update_password">Update Password</string>
+    <string name="order_detail">Order Detail</string>
+    <string name="order_no">Order No. 2501</string>
+    <string name="orders_placed">Orders Placed</string>
+    <string name="order_status">Status:</string>
+
+    <string name="order_status_pending">PENDING</string>
+    <string name="orders_found">%1$d Orders found</string>
+    <string name="delivery_date">DELIVERY DATE</string>
+    <string name="time_slot">TIME SLOT</string>
+    <string name="tab_order_no">ORDER NO</string>
+    <string name="search">Search</string>
+    <string name="search_image">Search Image</string>
+    <string name="orders_not_found">Orders not found!</string>
+    <string name="search_order">Search Order</string>
+    <string name="search_by">Search by:</string>
+    <string name="customer_name">Customer name</string>
+    <string name="search_order_no">Order no</string>
+    <string name="search_delivery_date">Delivery date</string>
+    <string name="search_time_slot">Time slot</string>
+
+    <string name="back">Back</string>
+    <string name="order_details">Order details</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="enter_registered_mobile_number">Enter registered mobile number</string>
+    <string name="mobile">Mobile</string>
+    <string name="order_no_cannot_be_empty">Order no cannot be empty.</string>
+
+
+    <!--    <string name="app_name">GoldenKatarURC</string>-->
+    <string name="text_on_splash">Golden Katar URC</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="Password">Password</string>
+    <string name="Login">Login</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="newUser">New User</string>
+    <string name="drawerOpen">Drawer Open</string>
+    <string name="drawerclose">Drawer close</string>
+    <string name="search_title">Search</string>
+    <string name="cart_title">Shopping Cart</string>
+    <string name="Rs">\u20B9</string>
+    <string name="title_activity_timeslot">TimeslotActivity</string>
+    <!--    <string name="tab_text_1">Tab 1</string>-->
+    <!--    <string name="tab_text_2">Tab 2</string>-->
+    <!--    <string name="tab_text_3">Tab 3</string>-->
+
+    <string name="householdFilter">Household</string>
+    <string name="kitchenApplianceFilter">Kitchen Appliance</string>
+    <string name="utensilsFilter">Utensils</string>
+    <string name="electronicsFilter">Electronics</string>
+    <string name="watchesFilter">Watches</string>
+    <string name="cosmeticsFilter">Cosmetics</string>
+    <string name="selectFilter">Please select categories :</string>
+    <string name="orderStatus">ORDER STATUS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

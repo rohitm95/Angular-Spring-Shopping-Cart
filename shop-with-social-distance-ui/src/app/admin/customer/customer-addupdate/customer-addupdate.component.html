@@ -1,0 +1,170 @@
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space" fxLayoutAlign="center center">{{ action }} Customer</span>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+
+    <div class="container fluid customeraddupdate">
+        <form [formGroup]="frmCustomer" autocomplete="off" fxLayoutAlign="center center" novalidate
+            (ngSubmit)="addUpdateCustomer(frmCustomer.value)" class="form">
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element hidden">
+                        <input matInput placeholder="Id" formControlName="id" value="customer.id">
+                    </mat-form-field>
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="User Name" formControlName="username" value="customer.username">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['username'].valid && frmCustomer.controls['username'].touched">
+                            {{ getErrorMessage('username') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender" [(value)]="customer.gender">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let g of gender" [value]="g">
+                                {{g}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['gender'].valid && frmCustomer.controls['gender'].touched">
+                            {{ getErrorMessage('gender') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="First Name" formControlName="firstName" value="customer.firstName">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['firstName'].valid && frmCustomer.controls['firstName'].touched">
+                            {{ getErrorMessage('firstName') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Last Name" formControlName="lastName" value="customer.lastName">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['lastName'].valid && frmCustomer.controls['lastName'].touched">
+                            {{ getErrorMessage('lastName') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Email Id" formControlName="emailId" value="customer.emailId">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['emailId'].valid && frmCustomer.controls['emailId'].touched">
+                            {{ getErrorMessage('emailId') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Mobile Number" formControlName="mobileNumber"
+                            value="customer.mobileNumber">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['mobileNumber'].valid && frmCustomer.controls['mobileNumber'].touched">
+                            {{ getErrorMessage('mobileNumber') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category" [(value)]="customer.category">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let category of categories" [value]="category">
+                                {{category}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['category'].valid && frmCustomer.controls['category'].touched">
+                            {{ getErrorMessage('category') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <mat-label>Role</mat-label>
+                        <mat-select formControlName="role" [(value)]="customer.role">
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let role of roles" [value]="role.id">
+                                {{role.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!frmCustomer.controls['role'].valid && frmCustomer.controls['role'].touched">
+                            {{ getErrorMessage('role') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Purchase Limt Per Year" formControlName="afd_purchase_limit"
+                            value="customer.afd_purchase_limit">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['afd_purchase_limit'].valid && frmCustomer.controls['afd_purchase_limit'].touched">
+                            {{ getErrorMessage('afd_purchase_limit') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="form-element">
+                        <input matInput placeholder="Purchase Limt Per Month" formControlName="nonAFD_purchase_limit"
+                            value="customer.nonAFD_purchase_limit">
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['nonAFD_purchase_limit'].valid && frmCustomer.controls['nonAFD_purchase_limit'].touched">
+                            {{ getErrorMessage('nonAFD_purchase_limit') }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-group form-check">
+                        <mat-radio-group aria-label="Select an option" formControlName="isActive"
+                            [(value}]="customer.isActive">
+                            <mat-radio-button [value]="true">Active</mat-radio-button>&nbsp;
+                            <mat-radio-button [value]="false">Inactive</mat-radio-button>
+                        </mat-radio-group>
+                        <mat-error
+                            *ngIf="!frmCustomer.controls['isActive'].valid && frmCustomer.controls['isActive'].touched">
+                            {{ getErrorMessage('isActive') }}
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+
+            <div class="form-element setCenter">
+                <button color="primary" mat-raised-button type="submit" [disabled]="!frmCustomer.valid">
+                    <i class="fa fa-pencil" *ngIf="action=='Update'" aria-hidden="true"></i>
+                    <i class="fa fa-plus" *ngIf="action=='Add'" aria-hidden="true"></i>
+                    {{action}} Customer
+                </button>
+                &nbsp;&nbsp;
+                <button class="btn btn-secondary" type="button" mat-raised-button color="warn" mat-dialog-close>
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                    Cancel</button>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>

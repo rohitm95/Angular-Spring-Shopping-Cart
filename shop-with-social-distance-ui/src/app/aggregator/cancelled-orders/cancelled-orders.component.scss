@@ -1,0 +1,72 @@
+@import '../../../scss/variables';
+.body-container {
+  padding: 4px 36px;
+  margin: 18px 0;
+}
+
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+.mat-tab-group {
+  &.mat-primary {
+    .mat-ink-bar {
+      background-color: $sd-primary;
+      top: 0;
+    }
+  }
+  .mat-tab-header {
+    border: 0;
+  }
+}
+
+.Pending {
+  color: orange;
+}
+
+.Completed {
+  color: green;
+}
+
+.Lapsed {
+  color: red;
+}
+
+.Cancelled {
+  color: rgb(83, 81, 81);
+}
+
+tr.mat-header-row {
+  background-color: #80808075;
+}
+
+th{
+  color: black;
+}
+
+.ordersfound{
+  max-width: 20%;
+}
+
+@media only screen and (max-width: 768px) {
+
+.ordersfound{
+  max-width: 50%;
+  padding-left: 7%;
+}
+
+.tablesearch{
+  padding-left:10%;
+}
+
+.clearfilter{
+  padding-left:27% !important;
+}
+
+.updatedata{
+  padding-left:27% !important;
+  padding-top:5% !important;
+}
+
+}

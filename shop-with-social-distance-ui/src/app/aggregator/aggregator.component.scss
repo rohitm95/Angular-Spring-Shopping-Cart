@@ -1,0 +1,38 @@
+@import '../../scss/variables';
+.body-container {
+  padding: 4px 36px;
+  margin: 18px 0;
+}
+
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+.mat-tab-group {
+  &.mat-primary {
+    .mat-ink-bar {
+      background-color: $sd-primary;
+      top: 0;
+    }
+  }
+  .mat-tab-header {
+    border: 0;
+  }
+}
+
+.Pending {
+  color: orange;
+}
+
+.Completed {
+  color: green;
+}
+
+.Lapsed {
+  color: red;
+}
+
+.Cancelled {
+  color: rgb(83, 81, 81);
+}

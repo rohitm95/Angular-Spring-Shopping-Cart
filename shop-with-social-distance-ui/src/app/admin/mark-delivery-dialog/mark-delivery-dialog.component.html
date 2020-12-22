@@ -1,0 +1,12 @@
+<mat-dialog-content>
+    <h3>
+        Do you want to confirm order without viewing order details?
+    </h3>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="proceedForMarking()">Yes</button>
+    <button mat-raised-button mat-dialog-close class="btn btn-danger">No</button>
+</mat-dialog-actions>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

@@ -1,0 +1,184 @@
+.bordercolor{
+  border-color: orange;
+}
+
+.backgroundcolor{
+  background-color: #f7f7f7;
+}
+
+.ScrollStyle
+{
+    max-height: 395px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right:3%;
+}
+
+.ScrollStyle::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.ScrollStyle::-webkit-scrollbar-track {
+  background: #eee;
+
+}
+
+/* scrollbar handle */
+.ScrollStyle::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color:rgb(105, 98, 98);
+  background-image: rgb(105, 98, 98);
+}
+
+.accordion{
+    margin-left: -9%;
+}
+
+.fontsize12{
+  font-size:12px;
+}
+
+.fontsize14{
+  font-size: 14px;
+}
+
+.fontsize15{
+  font-size:15px;
+}
+
+.fontweight17{
+  font-size: 17px;
+}
+
+.fontweight{
+  font-weight:500;
+}
+
+.fontbold{
+  font-weight: bold;
+}
+
+.inputgroup{
+  border:none;
+  background-color: #efefef;
+}
+
+.inventorylist{
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.itemsfound{
+  font-weight: 400;
+}
+
+.input-group-append .searchbutton{
+  background-color: #471dad;
+  margin-left:15px;
+}
+
+.qtybutton{
+  width: 40%;
+  // margin-left: -15%;
+}
+
+.accordioncheckout{
+  margin-left: -6%;
+}
+
+.bgcolorcheckout{
+  background-color: #3f3f3f;
+}
+
+.accordiancheckout{
+  border:none;
+  outline: none;
+}
+
+.checkoutbtn{
+  background-color:#ff8400;
+  margin-left:15px;
+  border:none;
+  width:89%;
+}
+
+.cartbgcolor{
+  background-color: #313131;
+}
+
+.carttitilecolor{
+  color:orange;
+}
+
+.undoitemtextcolor{
+  color:rgb(177, 175, 172);
+}
+
+.addtocart{
+  background-color: #471dad;
+  margin-left: 5% !important;
+  margin-top:6% !important;
+  margin-bottom: 6% !important;
+}
+
+.cardHeight{
+  min-height: 375px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+ .accordion{
+    margin-left: 0%;
+}
+
+.img-fluid{
+  max-width: 25%;
+}
+
+.titlemobile{
+margin-left: 85px;
+margin-top:-60px !important;
+}
+
+.qtymobile{
+  margin-left: 45px;
+}
+
+.pricemobile{
+  margin-left:100px !important;
+}
+
+.cardHeight{
+  min-height: 0px;
+}
+
+.searchmobile{
+margin-left: 50px;
+}
+
+.widthmobile{
+  width:325px;
+}
+
+.itemmobile{
+  padding-top: 12px;
+  margin-left: 43px;
+}
+
+}
+
+tr.mat-header-row{
+  display: none;
+}
+.mat-icon{
+  cursor:pointer;
+}
+.searchIcon{
+  position: inline;
+  margin-left: 150px;
+}
+mark{
+  background-color: yellow;
+  color: black;
+}

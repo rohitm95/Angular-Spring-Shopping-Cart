@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customer.activities.MyOrdersActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            app:title="Golden Katar "
+            app:titleTextColor="#fff"
+            android:background="@color/colorPrimaryDark">
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            app:cardElevation="10dp">
+
+
+            <!--    <LinearLayout-->
+            <!--        android:id="@+id/orders_header"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:padding="10dp"-->
+            <!--        android:gravity="center"-->
+            <!--        >-->
+
+            <!--        <TextView-->
+            <!--            android:layout_width="0dp"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:gravity="left"-->
+            <!--            android:textColor="@color/black"-->
+            <!--            android:text="Order no"-->
+            <!--            android:textSize="17sp"/>-->
+
+
+            <!--        <TextView-->
+            <!--            android:layout_width="0dp"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:gravity="center"-->
+            <!--            android:textColor="@color/black"-->
+            <!--            android:text="Order date"-->
+            <!--            android:textSize="17sp"-->
+            <!--            />-->
+
+            <!--        <TextView-->
+            <!--            android:layout_width="0dp"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:gravity="right"-->
+            <!--            android:textColor="@color/black"-->
+            <!--            android:text="Order status"-->
+            <!--            android:textSize="17sp"/>-->
+
+            <!--    </LinearLayout>-->
+
+
+            <LinearLayout
+                android:id="@+id/list_header_view"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                android:background="@android:color/black"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@id/search_view">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:paddingStart="4dp"
+                    android:paddingLeft="4dp"
+                    android:textStyle="bold"
+                    android:text="@string/tab_order_no"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/delivery_date"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textStyle="bold"
+                    android:text="@string/orderStatus"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@+id/cardview_orders"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orders_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/horizontal_line"
+
+            />
+    </RelativeLayout>
+</RelativeLayout>

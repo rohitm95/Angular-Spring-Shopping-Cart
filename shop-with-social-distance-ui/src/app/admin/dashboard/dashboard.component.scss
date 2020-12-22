@@ -1,0 +1,65 @@
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+tr.mat-header-row {
+  background-color: grey;
+}
+
+.tab-content-area {
+  padding: 26px 15px 15px;
+}
+
+.ScrollStyle {
+  max-height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 3%;
+}
+
+.ScrollStyle::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.ScrollStyle::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.ScrollStyle::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: rgb(105, 98, 98);
+  background-image: rgb(105, 98, 98);
+}
+
+.carouselContainer {
+  min-height: 225px;
+}
+
+.pointerLink {
+  cursor: pointer;
+}
+
+.carousel-control-prev {
+  left: -6.6%;
+}
+
+.carousel-control-next {
+  left: 91.6%;
+}
+
+@media only screen and (max-width: 768px) {
+  .completeresponsive{
+    width:100%;
+  }
+
+  .pendingresponsive{
+    width:100%;
+  }
+
+  .redayresponsive{
+    width:100%;
+  }
+}

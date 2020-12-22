@@ -1,0 +1,41 @@
+@import '../../scss/variables';
+
+.navbar-main {
+  background-color: $sd-primary;
+  box-shadow:0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+  padding: 4px 40px;
+
+  .avatar-nav {
+    border-radius: 50%;
+    height: 36px;
+  }
+
+  .navbar-brand,
+  .navbar-text {
+    color: $text-reverse;
+  }
+
+  .navbar-text {
+    line-height: normal;
+  }
+}
+
+.font-weight-bold {
+  font-weight: 500 !important;
+}
+
+@media only screen and (max-width: 768px) {
+
+.imgmobile{
+  width:33px;
+}
+
+}
+
+.navbar-brand:hover {
+  cursor: pointer;
+}
+
+#navbarText:hover {
+  cursor: pointer;
+}

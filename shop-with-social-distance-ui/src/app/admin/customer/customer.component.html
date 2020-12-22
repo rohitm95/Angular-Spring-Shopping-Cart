@@ -1,0 +1,205 @@
+<div class="tab-content-area">
+  <div class="row">
+    <div class="col-md-2">
+      <h2>Add Customers</h2>
+    </div>
+    <div class="col-md-10">
+      Search by:
+      <div class="row">
+        <div class="col-md-2">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value, 'customerName')" placeholder="Customer Name"
+              [(ngModel)]="customerName">
+          </mat-form-field>
+        </div>
+        <div class="col-md-2">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value, 'mobileNumber')" placeholder="Mobile Number"
+              [(ngModel)]="mobileNumber">
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-2">
+          <mat-form-field>
+            <mat-select placeholder="Category" (selectionChange)="applyFilter($event.value, 'category')"
+              [(ngModel)]="category">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{category}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-2">
+          <mat-form-field>
+            <mat-select placeholder="Status" (selectionChange)="applyFilter($event.value, 'isActive')"
+              [(ngModel)]="isActive">
+              <mat-option *ngFor="let s of userStatus" [value]="s">
+                {{s}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-2">
+          <button mat-raised-button color="primary" class="responsivefilter" (click)="refreshCustomerData()">
+            <i class="fa fa-remove"></i>
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button mat-flat-button color="warn" class="uploadresponsive" (click)="openCustomerUpload()">
+    <i class="fa fa-upload"></i> Click here to upload
+  </button>
+  &nbsp;&nbsp;
+  <button mat-flat-button color="primary" class="singleuserresponsive" (click)="openAddUpdateDialog(null)">
+    <i class="fa fa-plus"></i> Click here to add single user
+  </button>
+  <button mat-flat-button color="primary" class="float-right refreshresponsive" (click)="refreshCustomerData()">
+    <mat-icon aria-hidden="false" aria-label="Refresh Table">refresh</mat-icon>
+    Refresh
+  </button>
+
+  <div class="col-md-12">
+    <div class="mat-elevation-z8">
+      <div class="table-responsive">
+     <!--   <table mat-table [dataSource]="dataSourceCustomerFiltered" matSort class="table-striped mt-2">
+
+          <ng-container matColumnDef="username">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> USER NAME </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> NAME </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="emailId">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> EMAIL </th>
+            <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="mobileNumber">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> MOBILE NUMBER </th>
+            <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef> ROLE </th>
+            <td mat-cell *matCellDef="let element"> {{element.role.name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="isActive">
+            <th mat-header-cell *matHeaderCellDef> STATUS </th>
+            <td mat-cell *matCellDef="let element"> {{element.isActive | status }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="category">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> CATEGORY </th>
+            <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="afd_purchase_limit">
+            <th mat-header-cell *matHeaderCellDef> PURCHASE LIMIT PER YEAR </th>
+            <td mat-cell *matCellDef="let element"> {{element.afd_purchase_limit}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nonAFD_purchase_limit">
+            <th mat-header-cell *matHeaderCellDef> PURCHASE LIMIT PER MONTH </th>
+            <td mat-cell *matCellDef="let element"> {{element.nonAFD_purchase_limit}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button (click)="openAddUpdateDialog(element)" #tooltip="matTooltip"
+                matTooltip="View/Edit Customer Details"><i class="fa fa-eye"></i></button>
+              <button mat-button #tooltip="matTooltip" matTooltip="Mark Inactive"
+                (click)="openConfirmDeleteDialog(element)"><i class="fa fa-times"></i></button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsCustomer"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsCustomer;let element"></tr>
+        </table>-->
+      
+      <table mat-table [dataSource]="dataSourceCustomerFiltered" matSort class="table-striped mt-2">
+      <!-- <table mat-table [dataSource]="dataSourceCustomerFiltered" matSort class="table-striped mt-2"> -->
+
+        <ng-container matColumnDef="username">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> USER NAME </th>
+          <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> NAME </th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> EMAIL </th>
+          <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mobileNumber">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> MOBILE NUMBER </th>
+          <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef> ROLE </th>
+          <td mat-cell *matCellDef="let element"> {{element.role.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef> STATUS </th>
+          <td mat-cell *matCellDef="let element"> {{element.isActive | status }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> CATEGORY </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="afd_purchase_limit">
+          <th mat-header-cell *matHeaderCellDef> PURCHASE LIMIT PER YEAR </th>
+          <td mat-cell *matCellDef="let element"> {{element.afd_purchase_limit}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nonAFD_purchase_limit">
+          <th mat-header-cell *matHeaderCellDef> PURCHASE LIMIT PER MONTH </th>
+          <td mat-cell *matCellDef="let element"> {{element.nonAFD_purchase_limit}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="openAddUpdateDialog(element)" #tooltip="matTooltip"
+              matTooltip="View/Edit Customer Details"><i class="fa fa-eye"></i></button>
+            <button mat-button #tooltip="matTooltip" matTooltip="Mark Inactive"
+              (click)="openConfirmDeleteDialog(element)"><i class="fa fa-times"></i></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsCustomer"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsCustomer;let element"></tr>
+      </table>
+      <table *ngIf="dataSourceCustomerFiltered.filteredData.length == 0" class="table-striped mt-2">
+        <tr>
+          <td [attr.colspan]="displayedColumnsCustomer.length" style="text-align: center;">
+            No Records Found!
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    </div>
+  </div>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [disabled]="dataSourceCustomerFiltered.filteredData.length == 0"></mat-paginator>
+</div>

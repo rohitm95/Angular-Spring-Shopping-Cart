@@ -1,0 +1,42 @@
+@import '../../scss/variables';
+.brand-section {
+  background-color: $sd-primary;
+  height: 520px;
+}
+
+.login-right {
+  border: 1px solid #e2e2e2;
+}
+
+.login-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.font-weight-bold {
+  font-weight: 500 !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.pointer:hover {
+  color: #6f42c1;
+}
+
+@media only screen and (max-width: 768px) {
+
+.brand-section {
+  height: 400px;
+}
+
+.h1mobile{
+  padding-top: 160px;
+}
+
+.loginmobile{
+  padding-top: 10px !important;
+  margin-left: 35px;
+}
+
+}

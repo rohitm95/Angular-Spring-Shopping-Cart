@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/mobile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/mobile_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="@string/mobile"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/mobile_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/enter_registered_mobile_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+
+                    android:focusable="true"
+                    android:importantForAutofill="no" />
+<!--                android:text="1234567892"-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/password_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mobile_layout"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/password_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:text="@string/enter_password"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/password_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/enter_your_password"
+
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:focusable="true"
+                    android:importantForAutofill="no" />
+<!--                android:text="admin"-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/password_layout"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="1dp"
+                    android:enabled="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_login"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:text="@string/login" />
+                <Button
+                    android:id="@+id/forgot"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="1dp"
+                    android:enabled="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_login"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:text="@string/forgot_password" />
+                <Button
+                    android:id="@+id/update"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="1dp"
+                    android:enabled="true"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_login"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:text="@string/update_password"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+</RelativeLayout>

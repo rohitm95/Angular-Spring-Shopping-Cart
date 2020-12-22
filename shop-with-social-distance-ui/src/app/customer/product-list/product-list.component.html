@@ -1,0 +1,262 @@
+<app-header></app-header>
+
+<div class="container my-3 border pb-1">
+  <div class="row ">
+    <div class="col-md-2">
+      <div class="accordion" id="accordionExample">
+        <div class="card backgroundcolor">
+          <div class="card-header p-2" id="headingOne">
+            <h2 class="mb-0">
+              <div class="fontsize15">Filter Items By:</div>
+            </h2>
+          </div>
+        </div>
+        <div class="card backgroundcolor">
+          <div class="card-header p-0" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left text-dark" type="button" data-toggle="collapse"
+                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="box-shadow:none;">
+                CATEGORY
+              </button>
+            </h2>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body p-0 pl-3">
+                <button mat-raised-button color="primary" (click)="resetFilters()">
+                  <i class="fa fa-remove"></i>Clear Filters</button>
+                <div *ngIf="!checked">
+                  <div class="input-group" *ngFor="let category of productCategoryList">
+                    <mat-checkbox class="form-control inputgroup" style="font-size:14px;" aria-label="Popular"
+                      [value]="category" (change)="filterByCategory($event)">{{category}}
+                    </mat-checkbox>
+                  </div>
+                </div>
+                <div *ngIf="checked==true">
+                  <div class="input-group" *ngFor="let category of productCategoryList">
+                    <mat-checkbox class="form-control inputgroup" style="font-size:14px;" aria-label="Popular"
+                      [value]="category" [(ngModel)]="checkbox" (change)="filterByCategory($event)">{{category}}
+                    </mat-checkbox>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+
+      <div class="row">
+        <div class="col-md-7 my-auto itemsfound itemmobile">
+          Please Select items you wish to buy
+          <h4 class="mt-2">{{inventoryProductCount}} items found</h4>
+        </div>
+        <div class="col-md-5 my-auto">
+
+          <div class="input-group mb-3">
+            <mat-form-field class="searchmobile" appearance="legacy">
+              <mat-label>Search Product</mat-label>
+              <input #search matInput placeholder="Search here.." [disabled]="searchCheck!==''"
+                [(ngModel)]="searchItem">
+              <div class="searchIcon" *ngIf="searchCheck===''">
+                <mat-icon matSuffix [disabled]="searchItem==='' " (click)="searchFilter()">search</mat-icon>
+              </div>
+              <div class="searchIcon" *ngIf="searchCheck!==''">
+                <mat-icon matSuffix (click)="clearSearchFilter()">close</mat-icon>
+              </div>
+            </mat-form-field>
+            <!--<mat-label>Search Product</mat-label>
+            <mat-search-bar></mat-search-bar>-->
+          </div>
+        </div>
+      </div>
+
+      <hr />
+      <div>
+        <mat-paginator #paginator [pageIndex]="0" [pageSizeOptions]="[5,10,30]" [length]="totalsize"
+          [disabled]="dataSourceFilter.filteredData.length == 0 || searchItem!=='' "
+          (page)="onOptionsSelectedup($event)" showFirstLastButtons></mat-paginator>
+
+      </div>
+      <table mat-table [dataSource]="dataSourceFilter" matSort class="mt-2 ScrollStyle">
+        <div class="card bordercolor mb-2 p-0">
+          <ng-container matColumnDef="item">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <div class="card-body p-0">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img class="img-fluid" src={{element.imageUrl}}>
+                  </div>
+                  <div class="col-md-4 my-auto titlemobile">
+                    <div class="fontsize15 fontweight pt-1">{{element.itemName}}</div>
+                    <div class="pt-1">
+                      <div *ngIf="element.stock > 0 && element.stock > 5">
+                        <span class="text-success">In Stock</span><br>
+                      </div>
+                      <div *ngIf="element.stock <= 0">
+                        <span class="text-danger">Out of Stock</span><br>
+                      </div>
+                      <div *ngIf="element.newArrival=== true">
+                        <mark>New Arrival</mark>
+                      </div>
+                      <div *ngIf="element.toBeSoldOneItemPerOrder === true">
+                        <span class="text-info">Only one per Order</span><br>
+                      </div>
+                      <div *ngIf="element.stock < 5 && element.stock > 0">
+                        <span class="text-danger">Only {{element.stock}} Items
+                          Remaining</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 text-center my-auto p-0 m-0 pricemobile">
+                    <div class="fontweight17 fontbold">{{element.price | currency:'INR'}}</div>
+                  </div>
+                  <div class="col-md-4 my-auto qtymobile">
+                    <div *ngIf="element.stock != 0" class="row">
+                      <mat-form-field class="qtybutton">
+                        <mat-label>Quantity</mat-label>
+                        <select #QuantityDropDown matNativeControl>
+                          <option [ngvalue]="1" [disabled]="element.toBeSoldOneItemPerOrder === true">1</option>
+                          <option *ngIf="element.toBeSoldOneItemPerOrder === false" [ngvalue]="2">2</option>
+                          <option *ngIf="element.toBeSoldOneItemPerOrder === false" [ngvalue]="3">3</option>
+                          <option *ngIf="element.toBeSoldOneItemPerOrder === false" [ngvalue]="4">4</option>
+                          <option *ngIf="element.toBeSoldOneItemPerOrder === false" [ngvalue]="5">5</option>
+                        </select>
+                      </mat-form-field>
+                      <button type="button" class="addtocart btn pl-2 pr-2 m-0 text-white"
+                        (click)="validateCartEntry(element, QuantityDropDown)"
+                        [disabled]="element.stock <= 0 || QuantityDropDown.value == 0">Add to
+                        Cart</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </td>
+          </ng-container>
+        </div>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;let element"></tr>
+      </table>
+      <table *ngIf="dataSourceFilter.filteredData.length == 0 " class="table-striped mt-2">
+        <tr>
+          <td [attr.colspan]="displayedColumns.length" style="text-align: center;">
+            No Records Found!
+          </td>
+        </tr>
+      </table>
+
+
+      <!--<mat-paginator #paginator [pageIndex]="0" [pageSize]="5" (page) = "onPageFired($event)" [disabled]="dataSourceFilter.filteredData.length == 0" showFirstLastButtons ></mat-paginator>
+      <mat-paginator #paginator [pageIndex]="0" [pageSizeOptions]="[10,30,50]" (page)="onOptionsSelecteddown($event)"
+        [disabled]="dataSourceFilter.filteredData.length == 0" showFirstLastButtons></mat-paginator>-->
+
+      <div class="ScrollStyle" [formGroup]="listForm" #listItems style="display: none;">
+        <div class="card bordercolor mb-2 p-0" *ngFor="let product of inventoryProductList | filter:term">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-md-2">
+                <img class="img-fluid" src={{product.imageUrl}}>
+              </div>
+              <div class="col-md-4 my-auto titlemobile">
+                <div class="fontsize15 fontweight pt-1">{{product.itemName}}</div>
+                <div class="pt-1">
+                  <div *ngIf="product.stock > 0 && product.stock > 5">
+                    <span class="text-success">In Stock</span><br>
+                  </div>
+                  <div *ngIf="product.newArrival=== true">
+                    <mark>New Arrival</mark>
+                  </div>
+                  <div *ngIf="product.stock <= 0">
+                    <span class="text-danger">Out of Stock</span><br>
+                  </div>
+                  <div *ngIf="product.toBeSoldOneItemPerOrder === true">
+                    <span class="text-info">Only one per Order</span><br>
+                  </div>
+                  <div *ngIf="product.stock < 5 && product.stock > 0">
+                    <span class="text-danger">Only {{product.stock}} Items
+                      Remaining</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 text-center my-auto p-0 m-0 pricemobile">
+                <div class="fontweight17 fontbold">{{product.price | currency:'INR'}}</div>
+              </div>
+              <div class="col-md-4 my-auto qtymobile">
+                <div *ngIf="product.stock != 0" class="row">
+                  <mat-form-field class="qtybutton">
+                    <mat-label>Quantity </mat-label>
+                    <select #QuantityDropDown matNativeControl>
+                      <option [ngvalue]="1" [disabled]="product.toBeSoldOneItemPerOrder === true">1</option>
+                      <option *ngIf="product.toBeSoldOneItemPerOrder === false" [ngvalue]="2">2</option>
+                      <option *ngIf="product.toBeSoldOneItemPerOrder === false" [ngvalue]="3">3</option>
+                      <option *ngIf="product.toBeSoldOneItemPerOrder === false" [ngvalue]="4">4</option>
+                      <option *ngIf="product.toBeSoldOneItemPerOrder === false" [ngvalue]="5">5</option>
+                    </select>
+                  </mat-form-field>
+                  <button type="button" class="addtocart btn pl-2 pr-2 m-0 text-white"
+                    (click)="validateCartEntry(product, QuantityDropDown)"
+                    [disabled]="product.stock <= 0 || QuantityDropDown.value == 0">Add to
+                    Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-3 pr-0 widthmobile">
+      <div class="accordion accordioncheckout">
+        <div class="card bgcolorcheckout">
+          <div class="card-header p-2" id="headingOne">
+            <h2 class="mb-0" style="padding-left:7%;">
+              <div class="text-white fontsize15">Total Amount Payable</div>
+              <div class="text-white fontsize15">{{grandTotal | currency:'INR'}}</div>
+            </h2>
+          </div>
+        </div>
+        <div class="card bgcolorcheckout accordiancheckout">
+          <div class="card-header p-2" id="headingOne">
+            <div>
+              <button type="button" class=" btn checkoutbtn text-white" [disabled]="cartProductListCount <= 0"
+                (click)="openTimeslots()">CHECKOUT</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bgcolorcheckout accordiancheckout">
+          <div class="card-header p-2" id="headingOne">
+            <div class="ScrollStyle">
+              <div class="text-white fontsize15 pl-2" *ngIf="cartProductListCount !== null">{{cartProductListCount}}
+                Items Selected</div>
+              <div class="card-body cartbgcolor cardHeight">
+                <div *ngFor="let cartProduct of cartProductList; let i = index">
+                  <div class="pt-3 carttitilecolor fontsize12">{{cartProduct.product.itemName}}</div>
+                  <div class="pt-1 text-white fontsize12">Qty: {{cartProduct.product.noOfItemsOrderded}} | Price:
+                    {{cartProduct.product.price | currency:'INR'}}</div>
+                  <div class="pt-1 text-white fontsize14">Amount:
+                    {{cartProduct.product.noOfItemsOrderded * cartProduct.product.price | currency:'INR'}}</div>
+                  <div class="pt-1 text-white offset-5 fontsize14">
+                    <button mat-flat-button color="primary" class="cartbgcolor accordiancheckout"
+                      (click)="deleteItem(i, cartProduct.product)">DELETE
+                      ITEM</button>
+                  </div>
+                  <hr style="background-color:white;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait...</p>
+</ngx-spinner>

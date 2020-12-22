@@ -1,0 +1,92 @@
+@import "../../../scss/variables";
+.body-container {
+  padding: 4px 36px;
+  margin: 18px 0;
+}
+
+.tab-content-area {
+  padding: 26px 15px 15px;
+}
+
+.mat-tab-group {
+  &.mat-primary {
+    .mat-ink-bar {
+      background-color: $sd-primary;
+      top: 0;
+    }
+  }
+  .mat-tab-header {
+    border: 0;
+  }
+}
+
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+tr.mat-header-row {
+  background-color: #80808075;
+}
+
+th{
+  color: black;
+}
+
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+.Pending {
+  color: orange;
+}
+
+.Completed {
+  color: green;
+}
+
+.Lapsed {
+  color: red;
+}
+
+.Cancelled {
+  color: rgb(83, 81, 81);
+}
+
+.mat-form-field {
+  display: block;
+}
+
+tr.mat-header-row {
+  background-color: #80808075;
+}
+
+th{
+  color: black;
+}
+
+.tab-content-area {
+  padding: 26px 15px 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .uploadresponsive{
+    margin-left: 58px;
+    margin-top: 4px;
+  }
+
+  .responsivefilter{
+    margin-left: 85px;
+  }
+
+  .singleuserresponsive{
+    margin-left:31px;
+    margin-top:4px;
+  }
+
+  .refreshresponsive{
+    margin-right:96px;
+    margin-top: 4px;;
+  }
+}

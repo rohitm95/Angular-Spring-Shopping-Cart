@@ -1,0 +1,59 @@
+<div class="login-wrapper shadow-sm">
+  <div class="container login-container align-self-center">
+    <div class="row">
+      <div class="col-md-6 brand-section d-flex">
+        <h1 class="text-white text-center align-self-center m-auto h1mobile">
+          <img src="./assets/images/logo.jpeg" width="50%" height="50%"><br><br>
+          <span class="font-weight-bold">Golden Katar URC</span>
+        </h1>
+      </div>
+      <div class="col-md-6 bg-white login-right">
+        <div class="row">
+          <div class="col-md-5 offset-md-2 py-5 loginmobile">
+            <h2>Login</h2>
+            <div class="form-group form-group mt-3 pb-2 mb-5">
+              <form [formGroup]="form" (ngSubmit)="submit(form)">
+
+                <div class="form-group">
+                  <mat-form-field>
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput formControlName="mobileNumber" id="mobileNumber" type="tel"
+                      placeholder="Enter Mobile Number" required />
+
+                  </mat-form-field>
+                  <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid">
+                    <mat-error *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</mat-error>
+                    <mat-error *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</mat-error>
+                  </div>
+                </div>
+                <div class="form-group mt-3 pb-2 mb-2">
+                  <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" id="password"
+                      placeholder="Enter Password" required />
+
+                  </mat-form-field>
+                  <div *ngIf="f.password.touched && f.password.invalid">
+                    <mat-error *ngIf="f.password.errors.required">Password is required.</mat-error>
+                  </div>
+                  <div class="alert alert-info">If you are new user, create your password and remember it for future.
+                  </div>
+                </div>
+                <div class="form-group pb-2 mb-2">
+                  <a (click)="toggleForgotPassword()" class="pointer">Forgot Password</a>
+                </div>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+  <p style="color: white">Please Wait. </p>
+</ngx-spinner>

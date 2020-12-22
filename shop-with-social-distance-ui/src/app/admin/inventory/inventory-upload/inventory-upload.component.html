@@ -1,0 +1,37 @@
+<mat-dialog-header>
+  <h3 class="text-center">Choose a File</h3>
+  <ul class="mb-2">
+    <li *ngFor="let file of files">
+      <mat-progress-bar style="margin-top:5%;margin-bottom:2%;" [value]="file.progress"></mat-progress-bar>
+      <span id="file-label">{{file.name }} ({{file.progress}}%)</span>
+    </li>
+  </ul>
+  <button mat-flat-button color="warn" (click)="onClick()">
+    <mat-icon aria-hidden="false" aria-label="Folder Open">folder_open</mat-icon>
+    Choose file to upload
+  </button>
+</mat-dialog-header>
+<mat-dialog-content>
+
+  <input type="file" #fileUpload id="fileUpload" name="fileUpload" (change)="onFileChange($event)"
+    accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    style="display: none;" />
+  <table class="table table-striped mt-2">
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let val of row | slice:0:6">
+          {{val}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="danger" [innerHtml]='errorMessage'>Error</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button class="btn-success" [disabled]="!isFileSelected || isUploading" (click)="submitFile()"><i
+      class="fa fa-upload"></i> Upload</button>
+  <button mat-flat-button [disabled]="isUploading" mat-dialog-close color="warn">
+    <i class="fa fa-close" aria-hidden="true"></i>
+    Close
+  </button>
+</mat-dialog-actions>

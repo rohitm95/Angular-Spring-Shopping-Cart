@@ -1,0 +1,21 @@
+@import "../../../scss/variables";
+.body-container {
+  padding: 4px 36px;
+  margin: 18px 0;
+}
+
+.tab-content-area {
+  padding: 26px 15px 15px;
+}
+
+.mat-tab-group {
+  &.mat-primary {
+    .mat-ink-bar {
+      background-color: $sd-primary;
+      top: 0;
+    }
+  }
+  .mat-tab-header {
+    border: 0;
+  }
+}
